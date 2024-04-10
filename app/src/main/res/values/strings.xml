@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Top Movies</string>
+    <string name="back">Go Back</string>
 </resources>
