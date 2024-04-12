@@ -22,11 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,21 +47,13 @@ fun HomeScreen(
     vm: HomeViewModel = viewModel()
 ) {
 
-    val appName = stringResource(id = R.string.app_name)
-    var appBarTitle by remember { mutableStateOf(appName) }
     val ctx = LocalContext.current.applicationContext
     val coroutineScope = rememberCoroutineScope()
 
     PermissionRequestEffect(permission = Manifest.permission.ACCESS_COARSE_LOCATION) { granted ->
-        vm.onUiReady()
-
-        if (granted) {
-            coroutineScope.launch {
-                val region = ctx.getRegion()
-                appBarTitle = "$appBarTitle ($region)"
-            }
-        } else {
-            appBarTitle = "$appBarTitle (Permission denied)"
+        coroutineScope.launch {
+            val region = if (granted) ctx.getRegion() else "US"
+            vm.onUiReady(region)
         }
     }
 
@@ -75,7 +63,7 @@ fun HomeScreen(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = appBarTitle) },
+                    title = { Text(text = stringResource(id = R.string.app_name)) },
                     scrollBehavior = scrollBehavior,
                 )
             },
@@ -86,7 +74,9 @@ fun HomeScreen(
 
             if (state.loading) {
                 Box(
-                    modifier = Modifier.fillMaxSize().padding(padding),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator()

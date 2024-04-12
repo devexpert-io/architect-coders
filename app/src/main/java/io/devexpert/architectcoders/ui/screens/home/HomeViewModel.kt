@@ -16,10 +16,10 @@ class HomeViewModel : ViewModel() {
     var state by mutableStateOf(UiState())
         private set
 
-    fun onUiReady() {
+    fun onUiReady(region: String) {
         viewModelScope.launch {
             state = UiState(loading = true)
-            state = UiState(loading = false, movies = repository.fetchPopularMovies())
+            state = UiState(loading = false, movies = repository.fetchPopularMovies(region))
         }
     }
 
