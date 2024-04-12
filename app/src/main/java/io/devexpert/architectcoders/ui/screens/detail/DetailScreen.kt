@@ -21,8 +21,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import io.devexpert.architectcoders.Movie
 import io.devexpert.architectcoders.R
+import io.devexpert.architectcoders.data.Movie
 import io.devexpert.architectcoders.ui.screens.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
