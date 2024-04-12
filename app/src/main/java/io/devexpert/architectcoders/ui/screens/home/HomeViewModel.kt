@@ -6,11 +6,12 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.devexpert.architectcoders.data.Movie
-import io.devexpert.architectcoders.data.movies
-import kotlinx.coroutines.delay
+import io.devexpert.architectcoders.data.MoviesRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
+
+    private val repository: MoviesRepository = MoviesRepository()
 
     var state by mutableStateOf(UiState())
         private set
@@ -18,8 +19,7 @@ class HomeViewModel : ViewModel() {
     fun onUiReady() {
         viewModelScope.launch {
             state = UiState(loading = true)
-            delay(1000)
-            state = UiState(loading = false, movies = movies)
+            state = UiState(loading = false, movies = repository.fetchPopularMovies())
         }
     }
 

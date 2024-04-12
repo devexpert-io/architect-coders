@@ -48,7 +48,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(
     onMovieClick: (Movie) -> Unit,
-    vm: HomeViewModel = viewModel { HomeViewModel() }
+    vm: HomeViewModel = viewModel()
 ) {
 
     val appName = stringResource(id = R.string.app_name)
