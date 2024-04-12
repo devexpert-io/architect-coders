@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import io.devexpert.architectcoders.movies
+import io.devexpert.architectcoders.data.movies
 import io.devexpert.architectcoders.ui.screens.detail.DetailScreen
 import io.devexpert.architectcoders.ui.screens.home.HomeScreen
 
