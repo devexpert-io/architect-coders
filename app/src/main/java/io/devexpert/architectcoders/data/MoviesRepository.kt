@@ -1,9 +1,10 @@
 package io.devexpert.architectcoders.data
 
-class MoviesRepository {
-
-    suspend fun fetchPopularMovies(region: String): List<Movie> =
-        MoviesClient.instance.fetchPopularMovies(region)
+class MoviesRepository(
+    private val regionRepository: RegionRepository
+) {
+    suspend fun fetchPopularMovies(): List<Movie> =
+        MoviesClient.instance.fetchPopularMovies(regionRepository.findLastRegion())
             .results
             .map { it.toDomainModel() }
 

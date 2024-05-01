@@ -10,8 +10,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val id: Int) : ViewModel() {
-    private val repository: MoviesRepository = MoviesRepository()
+class DetailViewModel(
+    private val repository: MoviesRepository,
+    private val id: Int
+) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
