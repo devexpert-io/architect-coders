@@ -16,6 +16,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
@@ -29,7 +31,7 @@ import io.devexpert.architectcoders.ui.screens.Screen
 @Composable
 fun DetailScreen(vm: DetailViewModel, onBack: () -> Unit) {
 
-    val state = vm.state
+    val state by vm.state.collectAsState()
 
     Screen {
         Scaffold(
