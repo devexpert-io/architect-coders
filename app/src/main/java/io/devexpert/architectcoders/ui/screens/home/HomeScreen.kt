@@ -1,6 +1,5 @@
 package io.devexpert.architectcoders.ui.screens.home
 
-import android.Manifest
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,16 +16,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -34,10 +30,7 @@ import coil.compose.AsyncImage
 import io.devexpert.architectcoders.R
 import io.devexpert.architectcoders.data.Movie
 import io.devexpert.architectcoders.ui.common.LoadingIndicator
-import io.devexpert.architectcoders.ui.common.PermissionRequestEffect
-import io.devexpert.architectcoders.ui.common.getRegion
 import io.devexpert.architectcoders.ui.screens.Screen
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,28 +38,19 @@ fun HomeScreen(
     onMovieClick: (Movie) -> Unit,
     vm: HomeViewModel = viewModel()
 ) {
-
-    val ctx = LocalContext.current.applicationContext
-    val coroutineScope = rememberCoroutineScope()
-
-    PermissionRequestEffect(permission = Manifest.permission.ACCESS_COARSE_LOCATION) { granted ->
-        coroutineScope.launch {
-            val region = if (granted) ctx.getRegion() else "US"
-            vm.onUiReady(region)
-        }
-    }
+    val homeState = rememberHomeState()
+    homeState.AskRegionEffect { vm.onUiReady(it) }
 
     Screen {
-        val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text(text = stringResource(id = R.string.app_name)) },
-                    scrollBehavior = scrollBehavior,
+                    scrollBehavior = homeState.scrollBehavior,
                 )
             },
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            modifier = Modifier.nestedScroll(homeState.scrollBehavior.nestedScrollConnection),
             contentWindowInsets = WindowInsets.safeDrawing,
         ) { padding ->
             val state by vm.state.collectAsState()
