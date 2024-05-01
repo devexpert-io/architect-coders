@@ -1,26 +1,14 @@
 package io.devexpert.architectcoders.data
 
+import io.devexpert.architectcoders.data.datasource.MoviesRemoteDataSource
+
 class MoviesRepository(
-    private val regionRepository: RegionRepository
+    private val regionRepository: RegionRepository,
+    private val remoteDataSource: MoviesRemoteDataSource
 ) {
     suspend fun fetchPopularMovies(): List<Movie> =
-        MoviesClient.instance.fetchPopularMovies(regionRepository.findLastRegion())
-            .results
-            .map { it.toDomainModel() }
+        remoteDataSource.fetchPopularMovies(regionRepository.findLastRegion())
 
-    suspend fun findMovieById(id: Int): Movie =
-        MoviesClient.instance.fetchMovieById(id).toDomainModel()
+    suspend fun findMovieById(id: Int): Movie = remoteDataSource.findMovieById(id)
 }
 
-private fun RemoteMovie.toDomainModel() = Movie(
-    id,
-    title,
-    overview,
-    releaseDate,
-    "https://image.tmdb.org/t/p/w185/$posterPath",
-    backdropPath?.let { "https://image.tmdb.org/t/p/w780/$it" },
-    originalLanguage,
-    originalTitle,
-    popularity,
-    voteAverage
-)
