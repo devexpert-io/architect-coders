@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.data
+package io.devexpert.architectcoders.data.datasource.remote
 
 import retrofit2.http.GET
 import retrofit2.http.Path
