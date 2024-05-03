@@ -1,8 +1,8 @@
 package io.devexpert.architectcoders.data.datasource
 
 import io.devexpert.architectcoders.data.Movie
-import io.devexpert.architectcoders.data.MoviesClient
-import io.devexpert.architectcoders.data.RemoteMovie
+import io.devexpert.architectcoders.data.datasource.remote.MoviesClient
+import io.devexpert.architectcoders.data.datasource.remote.RemoteMovie
 
 class MoviesRemoteDataSource {
 
