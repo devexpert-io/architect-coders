@@ -5,18 +5,26 @@ import androidx.lifecycle.viewModelScope
 import io.devexpert.architectcoders.data.Movie
 import io.devexpert.architectcoders.data.MoviesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 
-class DetailViewModel(
-    private val repository: MoviesRepository,
-    private val id: Int
-) : ViewModel() {
+class DetailViewModel(repository: MoviesRepository, id: Int) : ViewModel() {
 
-    private val _state = MutableStateFlow(UiState())
-    val state: StateFlow<UiState> = _state.asStateFlow()
+    private val message = MutableStateFlow<String?>(null)
+    val state: StateFlow<UiState> =
+        combine(repository.findMovieById(id), message) { movie, message ->
+            UiState(
+                loading = false,
+                movie = movie,
+                message = message
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = UiState(loading = true)
+        )
 
     data class UiState(
         val loading: Boolean = false,
@@ -24,18 +32,11 @@ class DetailViewModel(
         val message: String? = null
     )
 
-    init {
-        viewModelScope.launch {
-            _state.value = UiState(loading = true)
-            _state.value = UiState(loading = false, movie = repository.findMovieById(id))
-        }
-    }
-
     fun onFavoriteClicked() {
-        _state.update { it.copy(message = "Favorite clicked") }
+        message.value = "Favorite Clicked"
     }
 
     fun onMessageShown() {
-        _state.update { it.copy(message = null) }
+        message.value = null
     }
 }
