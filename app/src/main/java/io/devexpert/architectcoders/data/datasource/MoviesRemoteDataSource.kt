@@ -25,5 +25,6 @@ private fun RemoteMovie.toDomainModel() = Movie(
     originalLanguage,
     originalTitle,
     popularity,
-    voteAverage
+    voteAverage,
+    false
 )

@@ -24,5 +24,9 @@ class MoviesRepository(
                 ?: remoteDataSource.findMovieById(id).also { localDataSource.save(listOf(it)) }
             emit(movie)
         }
+
+    suspend fun toggleFavorite(movie: Movie) {
+        localDataSource.save(listOf(movie.copy(isFavorite = !movie.isFavorite)))
+    }
 }
 
