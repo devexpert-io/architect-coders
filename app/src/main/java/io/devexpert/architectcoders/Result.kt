@@ -14,6 +14,10 @@ sealed interface Result<out T> {
     data object Loading : Result<Nothing>
 }
 
+fun <T> Result<T>.ifSuccess(block: (T) -> Unit) {
+    if (this is Result.Success) block(data)
+}
+
 fun <T> Flow<T>.stateAsResultIn(scope: CoroutineScope): StateFlow<Result<T>> =
     map<T, Result<T>> { Result.Success(it) }
         .catch { emit(Result.Error(it)) }
