@@ -18,7 +18,6 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -34,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import io.devexpert.architectcoders.R
 import io.devexpert.architectcoders.data.Movie
-import io.devexpert.architectcoders.ui.common.LoadingIndicator
+import io.devexpert.architectcoders.ui.common.AcScaffold
 import io.devexpert.architectcoders.ui.common.PermissionRequestEffect
 import io.devexpert.architectcoders.ui.screens.Screen
 import io.devexpert.architectcoders.ui.theme.ArchitectCodersTheme
@@ -52,8 +51,9 @@ fun HomeScreen(
     }
 
     Screen {
-
-        Scaffold(
+        val state by vm.state.collectAsState()
+        AcScaffold(
+            state = state,
             topBar = {
                 TopAppBar(
                     title = { Text(text = stringResource(id = R.string.app_name)) },
@@ -61,14 +61,8 @@ fun HomeScreen(
                 )
             },
             modifier = Modifier.nestedScroll(homeState.scrollBehavior.nestedScrollConnection),
-            contentWindowInsets = WindowInsets.safeDrawing,
-        ) { padding ->
-            val state by vm.state.collectAsState()
-
-            if (state.loading) {
-                LoadingIndicator()
-            }
-
+            contentWindowInsets = WindowInsets.safeDrawing
+        ) { padding, movies ->
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(120.dp),
                 contentPadding = padding,
@@ -76,7 +70,7 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.spacedBy(4.dp),
                 modifier = Modifier.padding(horizontal = 4.dp)
             ) {
-                items(state.movies, key = { it.id }) {
+                items(movies, key = { it.id }) {
                     MovieItem(movie = it) { onMovieClick(it) }
                 }
             }
