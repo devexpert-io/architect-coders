@@ -1,17 +1,21 @@
 package io.devexpert.architectcoders.data.datasource
 
-import android.app.Application
 import android.location.Geocoder
 import android.location.Location
 import io.devexpert.architectcoders.ui.common.getFromLocationCompat
 
 const val DEFAULT_REGION = "US"
 
-class RegionDataSource(app: Application, private val locationDataSource: LocationDataSource) {
+interface RegionDataSource {
+    suspend fun findLastRegion(): String
+}
 
-    private val geocoder = Geocoder(app)
+class GeocoderRegionDataSource(
+    private val geocoder: Geocoder,
+    private val locationDataSource: LocationDataSource
+) : RegionDataSource {
 
-    suspend fun findLastRegion(): String =
+    override suspend fun findLastRegion(): String =
         locationDataSource.findLastLocation()?.toRegion() ?: DEFAULT_REGION
 
     private suspend fun Location.toRegion(): String {

@@ -1,18 +1,24 @@
 package io.devexpert.architectcoders.data.datasource
 
-import io.devexpert.architectcoders.data.datasource.remote.MoviesClient
+import io.devexpert.architectcoders.data.datasource.remote.MoviesService
 import io.devexpert.architectcoders.data.datasource.remote.RemoteMovie
 import io.devexpert.architectcoders.domain.Movie
 
-class MoviesRemoteDataSource {
+interface MoviesRemoteDataSource {
+    suspend fun fetchPopularMovies(region: String): List<Movie>
 
-    suspend fun fetchPopularMovies(region: String): List<Movie> =
-        MoviesClient.instance.fetchPopularMovies(region)
+    suspend fun findMovieById(id: Int): Movie
+}
+
+class MoviesServerDataSource(private val moviesService: MoviesService) : MoviesRemoteDataSource {
+
+    override suspend fun fetchPopularMovies(region: String): List<Movie> =
+        moviesService.fetchPopularMovies(region)
             .results
             .map { it.toDomainModel() }
 
-    suspend fun findMovieById(id: Int): Movie =
-        MoviesClient.instance.fetchMovieById(id).toDomainModel()
+    override suspend fun findMovieById(id: Int): Movie =
+        moviesService.fetchMovieById(id).toDomainModel()
 }
 
 private fun RemoteMovie.toDomainModel() = Movie(

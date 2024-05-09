@@ -6,14 +6,20 @@ import io.devexpert.architectcoders.domain.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class MoviesLocalDataSource(private val moviesDao: MoviesDao) {
+interface MoviesLocalDataSource {
+    val movies: Flow<List<Movie>>
+    fun findMovieById(id: Int): Flow<Movie?>
+    suspend fun save(movies: List<Movie>)
+}
 
-    val movies: Flow<List<Movie>> = moviesDao.fetchPopularMovies().map { it.toDomainMovies() }
+class MoviesRoomDataSource(private val moviesDao: MoviesDao) : MoviesLocalDataSource {
 
-    fun findMovieById(id: Int): Flow<Movie?> =
+    override val movies: Flow<List<Movie>> = moviesDao.fetchPopularMovies().map { it.toDomainMovies() }
+
+    override fun findMovieById(id: Int): Flow<Movie?> =
         moviesDao.findMovieById(id).map { it?.toDomainMovie() }
 
-    suspend fun save(movies: List<Movie>) = moviesDao.save(movies.toDbMovies())
+    override suspend fun save(movies: List<Movie>) = moviesDao.save(movies.toDbMovies())
 }
 
 private fun DbMovie.toDomainMovie() = Movie(
