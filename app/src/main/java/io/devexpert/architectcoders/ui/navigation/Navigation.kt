@@ -16,6 +16,9 @@ import io.devexpert.architectcoders.data.datasource.LocationDataSource
 import io.devexpert.architectcoders.data.datasource.MoviesLocalDataSource
 import io.devexpert.architectcoders.data.datasource.MoviesRemoteDataSource
 import io.devexpert.architectcoders.data.datasource.RegionDataSource
+import io.devexpert.architectcoders.domain.FetchMoviesUseCase
+import io.devexpert.architectcoders.domain.FindMovieByIdUseCase
+import io.devexpert.architectcoders.domain.ToggleFavoriteUseCase
 import io.devexpert.architectcoders.ui.screens.detail.DetailScreen
 import io.devexpert.architectcoders.ui.screens.detail.DetailViewModel
 import io.devexpert.architectcoders.ui.screens.home.HomeScreen
@@ -39,7 +42,7 @@ fun Navigation() {
         composable(NavScreen.Home.route) {
 
             HomeScreen(
-                viewModel { HomeViewModel(moviesRepository) },
+                viewModel { HomeViewModel(FetchMoviesUseCase(moviesRepository)) },
                 onMovieClick = { movie ->
                     navController.navigate(NavScreen.Detail.createRoute(movie.id))
                 }
@@ -51,7 +54,13 @@ fun Navigation() {
         ) { backStackEntry ->
             val movieId = requireNotNull(backStackEntry.arguments?.getInt(NavArgs.MovieId.key))
             DetailScreen(
-                viewModel { DetailViewModel(moviesRepository, movieId) },
+                viewModel {
+                    DetailViewModel(
+                        movieId,
+                        FindMovieByIdUseCase(moviesRepository),
+                        ToggleFavoriteUseCase(moviesRepository)
+                    )
+                },
                 onBack = { navController.popBackStack() })
         }
     }
