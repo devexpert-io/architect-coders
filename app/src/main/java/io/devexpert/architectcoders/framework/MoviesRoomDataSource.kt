@@ -1,9 +1,9 @@
 package io.devexpert.architectcoders.framework
 
-import io.devexpert.architectcoders.data.datasource.MoviesLocalDataSource
-import io.devexpert.architectcoders.domain.Movie
 import io.devexpert.architectcoders.framework.database.DbMovie
 import io.devexpert.architectcoders.framework.database.MoviesDao
+import io.devexpert.data.datasource.MoviesLocalDataSource
+import io.devexpert.domain.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

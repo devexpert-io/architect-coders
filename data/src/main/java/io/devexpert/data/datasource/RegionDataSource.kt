@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.data.datasource
+package io.devexpert.data.datasource
 
 const val DEFAULT_REGION = "US"
 

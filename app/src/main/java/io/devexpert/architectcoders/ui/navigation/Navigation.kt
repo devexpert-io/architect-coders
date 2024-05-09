@@ -12,8 +12,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.android.gms.location.LocationServices
 import io.devexpert.architectcoders.App
-import io.devexpert.architectcoders.data.MoviesRepository
-import io.devexpert.architectcoders.data.RegionRepository
 import io.devexpert.architectcoders.framework.GeocoderRegionDataSource
 import io.devexpert.architectcoders.framework.MoviesRoomDataSource
 import io.devexpert.architectcoders.framework.MoviesServerDataSource
@@ -23,9 +21,11 @@ import io.devexpert.architectcoders.ui.screens.detail.DetailScreen
 import io.devexpert.architectcoders.ui.screens.detail.DetailViewModel
 import io.devexpert.architectcoders.ui.screens.home.HomeScreen
 import io.devexpert.architectcoders.ui.screens.home.HomeViewModel
-import io.devexpert.architectcoders.usecases.FetchMoviesUseCase
-import io.devexpert.architectcoders.usecases.FindMovieByIdUseCase
-import io.devexpert.architectcoders.usecases.ToggleFavoriteUseCase
+import io.devexpert.data.MoviesRepository
+import io.devexpert.data.RegionRepository
+import io.devexpert.usecases.FetchMoviesUseCase
+import io.devexpert.usecases.FindMovieByIdUseCase
+import io.devexpert.usecases.ToggleFavoriteUseCase
 
 @Composable
 fun Navigation() {

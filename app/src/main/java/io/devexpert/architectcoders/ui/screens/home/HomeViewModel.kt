@@ -2,10 +2,10 @@ package io.devexpert.architectcoders.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.devexpert.architectcoders.Result
-import io.devexpert.architectcoders.domain.Movie
-import io.devexpert.architectcoders.stateAsResultIn
-import io.devexpert.architectcoders.usecases.FetchMoviesUseCase
+import io.devexpert.architectcoders.ui.Result
+import io.devexpert.architectcoders.ui.stateAsResultIn
+import io.devexpert.domain.Movie
+import io.devexpert.usecases.FetchMoviesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

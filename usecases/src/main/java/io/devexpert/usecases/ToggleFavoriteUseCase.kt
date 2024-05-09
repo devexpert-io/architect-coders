@@ -1,7 +1,7 @@
-package io.devexpert.architectcoders.usecases
+package io.devexpert.usecases
 
-import io.devexpert.architectcoders.data.MoviesRepository
-import io.devexpert.architectcoders.domain.Movie
+import io.devexpert.data.MoviesRepository
+import io.devexpert.domain.Movie
 
 class ToggleFavoriteUseCase(private val repository: MoviesRepository) {
     suspend operator fun invoke(movie: Movie) {

@@ -26,7 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.devexpert.architectcoders.R
-import io.devexpert.architectcoders.Result
+import io.devexpert.architectcoders.ui.Result
 
 @Composable
 fun <T> AcScaffold(

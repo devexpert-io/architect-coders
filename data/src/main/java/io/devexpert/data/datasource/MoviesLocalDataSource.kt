@@ -1,6 +1,6 @@
-package io.devexpert.architectcoders.data.datasource
+package io.devexpert.data.datasource
 
-import io.devexpert.architectcoders.domain.Movie
+import io.devexpert.domain.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesLocalDataSource {

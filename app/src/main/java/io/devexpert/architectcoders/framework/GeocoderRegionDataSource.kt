@@ -1,11 +1,11 @@
 package io.devexpert.architectcoders.framework
 
 import android.location.Geocoder
-import android.location.Location
-import io.devexpert.architectcoders.data.datasource.DEFAULT_REGION
-import io.devexpert.architectcoders.data.datasource.LocationDataSource
-import io.devexpert.architectcoders.data.datasource.RegionDataSource
 import io.devexpert.architectcoders.ui.common.getFromLocationCompat
+import io.devexpert.data.datasource.DEFAULT_REGION
+import io.devexpert.data.datasource.LocationDataSource
+import io.devexpert.data.datasource.RegionDataSource
+import io.devexpert.domain.Location
 
 class GeocoderRegionDataSource(
     private val geocoder: Geocoder,

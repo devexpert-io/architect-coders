@@ -37,9 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import io.devexpert.architectcoders.R
-import io.devexpert.architectcoders.domain.Movie
 import io.devexpert.architectcoders.ui.common.AcScaffold
 import io.devexpert.architectcoders.ui.screens.Screen
+import io.devexpert.domain.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
