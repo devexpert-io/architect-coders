@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.domain
+package io.devexpert.architectcoders.usecases
 
 import io.devexpert.architectcoders.data.Movie
 import io.devexpert.architectcoders.data.MoviesRepository
