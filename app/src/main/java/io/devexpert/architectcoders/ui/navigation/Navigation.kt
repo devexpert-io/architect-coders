@@ -14,11 +14,11 @@ import com.google.android.gms.location.LocationServices
 import io.devexpert.architectcoders.App
 import io.devexpert.architectcoders.data.MoviesRepository
 import io.devexpert.architectcoders.data.RegionRepository
-import io.devexpert.architectcoders.data.datasource.GeocoderRegionDataSource
-import io.devexpert.architectcoders.data.datasource.MoviesRoomDataSource
-import io.devexpert.architectcoders.data.datasource.MoviesServerDataSource
-import io.devexpert.architectcoders.data.datasource.PlayServicesLocationDataSource
-import io.devexpert.architectcoders.data.datasource.remote.MoviesClient
+import io.devexpert.architectcoders.framework.GeocoderRegionDataSource
+import io.devexpert.architectcoders.framework.MoviesRoomDataSource
+import io.devexpert.architectcoders.framework.MoviesServerDataSource
+import io.devexpert.architectcoders.framework.PlayServicesLocationDataSource
+import io.devexpert.architectcoders.framework.remote.MoviesClient
 import io.devexpert.architectcoders.ui.screens.detail.DetailScreen
 import io.devexpert.architectcoders.ui.screens.detail.DetailViewModel
 import io.devexpert.architectcoders.ui.screens.home.HomeScreen

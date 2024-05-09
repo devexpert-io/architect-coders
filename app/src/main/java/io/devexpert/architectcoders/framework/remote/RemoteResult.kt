@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.data.datasource.remote
+package io.devexpert.architectcoders.framework.remote
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
