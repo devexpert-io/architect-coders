@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.domain
+package io.devexpert.domain
 
 data class Movie(
     val id: Int,

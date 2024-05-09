@@ -6,8 +6,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import io.devexpert.architectcoders.Result
-import io.devexpert.architectcoders.domain.Movie
+import io.devexpert.architectcoders.ui.Result
+import io.devexpert.domain.Movie
 
 @OptIn(ExperimentalMaterial3Api::class)
 class DetailState(

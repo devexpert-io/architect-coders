@@ -1,9 +1,9 @@
 package io.devexpert.architectcoders.framework
 
-import io.devexpert.architectcoders.data.datasource.MoviesRemoteDataSource
-import io.devexpert.architectcoders.domain.Movie
 import io.devexpert.architectcoders.framework.remote.MoviesService
 import io.devexpert.architectcoders.framework.remote.RemoteMovie
+import io.devexpert.data.datasource.MoviesRemoteDataSource
+import io.devexpert.domain.Movie
 
 class MoviesServerDataSource(private val moviesService: MoviesService) : MoviesRemoteDataSource {
 

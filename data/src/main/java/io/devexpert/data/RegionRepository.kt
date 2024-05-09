@@ -1,6 +1,6 @@
-package io.devexpert.architectcoders.data
+package io.devexpert.data
 
-import io.devexpert.architectcoders.data.datasource.RegionDataSource
+import io.devexpert.data.datasource.RegionDataSource
 
 class RegionRepository(private val regionDataSource: RegionDataSource) {
 

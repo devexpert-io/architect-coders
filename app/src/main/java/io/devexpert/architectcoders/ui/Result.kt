@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders
+package io.devexpert.architectcoders.ui
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
