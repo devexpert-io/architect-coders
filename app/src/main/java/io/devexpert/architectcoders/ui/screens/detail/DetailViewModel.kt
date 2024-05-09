@@ -4,21 +4,26 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.devexpert.architectcoders.Result
 import io.devexpert.architectcoders.data.Movie
-import io.devexpert.architectcoders.data.MoviesRepository
+import io.devexpert.architectcoders.domain.FindMovieByIdUseCase
+import io.devexpert.architectcoders.domain.ToggleFavoriteUseCase
 import io.devexpert.architectcoders.ifSuccess
 import io.devexpert.architectcoders.stateAsResultIn
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val repository: MoviesRepository, id: Int) : ViewModel() {
+class DetailViewModel(
+    id: Int,
+    findMovieByIdUseCase: FindMovieByIdUseCase,
+    private val toggleFavoriteUseCase: ToggleFavoriteUseCase
+) : ViewModel() {
 
-    val state: StateFlow<Result<Movie>> = repository.findMovieById(id)
+    val state: StateFlow<Result<Movie>> = findMovieByIdUseCase(id)
         .stateAsResultIn(scope = viewModelScope)
 
     fun onFavoriteClicked() {
         state.value.ifSuccess {
             viewModelScope.launch {
-                repository.toggleFavorite(it)
+                toggleFavoriteUseCase(it)
             }
         }
     }
