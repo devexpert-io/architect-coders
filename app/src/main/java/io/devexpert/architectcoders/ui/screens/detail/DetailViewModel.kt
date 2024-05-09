@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.devexpert.architectcoders.Result
 import io.devexpert.architectcoders.data.Movie
-import io.devexpert.architectcoders.domain.FindMovieByIdUseCase
-import io.devexpert.architectcoders.domain.ToggleFavoriteUseCase
 import io.devexpert.architectcoders.ifSuccess
 import io.devexpert.architectcoders.stateAsResultIn
+import io.devexpert.architectcoders.usecases.FindMovieByIdUseCase
+import io.devexpert.architectcoders.usecases.ToggleFavoriteUseCase
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 

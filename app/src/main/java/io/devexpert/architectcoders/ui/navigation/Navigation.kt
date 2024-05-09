@@ -16,13 +16,13 @@ import io.devexpert.architectcoders.data.datasource.LocationDataSource
 import io.devexpert.architectcoders.data.datasource.MoviesLocalDataSource
 import io.devexpert.architectcoders.data.datasource.MoviesRemoteDataSource
 import io.devexpert.architectcoders.data.datasource.RegionDataSource
-import io.devexpert.architectcoders.domain.FetchMoviesUseCase
-import io.devexpert.architectcoders.domain.FindMovieByIdUseCase
-import io.devexpert.architectcoders.domain.ToggleFavoriteUseCase
 import io.devexpert.architectcoders.ui.screens.detail.DetailScreen
 import io.devexpert.architectcoders.ui.screens.detail.DetailViewModel
 import io.devexpert.architectcoders.ui.screens.home.HomeScreen
 import io.devexpert.architectcoders.ui.screens.home.HomeViewModel
+import io.devexpert.architectcoders.usecases.FetchMoviesUseCase
+import io.devexpert.architectcoders.usecases.FindMovieByIdUseCase
+import io.devexpert.architectcoders.usecases.ToggleFavoriteUseCase
 
 @Composable
 fun Navigation() {
