@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.data.datasource.database
+package io.devexpert.architectcoders.framework.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
