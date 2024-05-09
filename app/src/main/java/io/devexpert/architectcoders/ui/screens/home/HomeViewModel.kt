@@ -3,7 +3,7 @@ package io.devexpert.architectcoders.ui.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.devexpert.architectcoders.Result
-import io.devexpert.architectcoders.data.Movie
+import io.devexpert.architectcoders.domain.Movie
 import io.devexpert.architectcoders.stateAsResultIn
 import io.devexpert.architectcoders.usecases.FetchMoviesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi

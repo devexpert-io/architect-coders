@@ -2,6 +2,7 @@ package io.devexpert.architectcoders.data
 
 import io.devexpert.architectcoders.data.datasource.MoviesLocalDataSource
 import io.devexpert.architectcoders.data.datasource.MoviesRemoteDataSource
+import io.devexpert.architectcoders.domain.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.onEach
