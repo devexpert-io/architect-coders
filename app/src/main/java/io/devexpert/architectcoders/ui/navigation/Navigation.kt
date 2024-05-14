@@ -12,20 +12,19 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.android.gms.location.LocationServices
 import io.devexpert.architectcoders.App
-import io.devexpert.architectcoders.framework.GeocoderRegionDataSource
-import io.devexpert.architectcoders.framework.MoviesRoomDataSource
-import io.devexpert.architectcoders.framework.MoviesServerDataSource
-import io.devexpert.architectcoders.framework.PlayServicesLocationDataSource
-import io.devexpert.architectcoders.framework.remote.MoviesClient
-import io.devexpert.architectcoders.ui.screens.detail.DetailScreen
-import io.devexpert.architectcoders.ui.screens.detail.DetailViewModel
-import io.devexpert.architectcoders.ui.screens.home.HomeScreen
-import io.devexpert.architectcoders.ui.screens.home.HomeViewModel
-import io.devexpert.data.MoviesRepository
-import io.devexpert.data.RegionRepository
-import io.devexpert.usecases.FetchMoviesUseCase
-import io.devexpert.usecases.FindMovieByIdUseCase
-import io.devexpert.usecases.ToggleFavoriteUseCase
+import io.devexpert.architectcoders.BuildConfig
+import io.devexpert.architectcoders.domain.movie.data.MoviesRepository
+import io.devexpert.architectcoders.domain.movie.usecases.FetchMoviesUseCase
+import io.devexpert.architectcoders.domain.movie.usecases.FindMovieByIdUseCase
+import io.devexpert.architectcoders.domain.movie.usecases.ToggleFavoriteUseCase
+import io.devexpert.architectcoders.domain.region.data.RegionRepository
+import io.devexpert.architectcoders.framework.core.MoviesClient
+import io.devexpert.architectcoders.framework.movie.database.MoviesRoomDataSource
+import io.devexpert.architectcoders.framework.movie.network.MoviesServerDataSource
+import io.devexpert.architectcoders.framework.region.GeocoderRegionDataSource
+import io.devexpert.architectcoders.framework.region.PlayServicesLocationDataSource
+import io.devexpert.architectcoders.ui.home.HomeScreen
+import io.devexpert.architectcoders.ui.home.HomeViewModel
 
 @Composable
 fun Navigation() {
@@ -42,7 +41,10 @@ fun Navigation() {
                 )
             ),
             localDataSource = MoviesRoomDataSource(app.db.moviesDao()),
-            remoteDataSource = MoviesServerDataSource(MoviesClient.instance)
+            remoteDataSource = MoviesServerDataSource(
+                MoviesClient(
+                    BuildConfig.TMDB_API_KEY
+                ).instance)
         )
     }
 
@@ -50,7 +52,9 @@ fun Navigation() {
         composable(NavScreen.Home.route) {
 
             HomeScreen(
-                viewModel { HomeViewModel(FetchMoviesUseCase(moviesRepository)) },
+                viewModel {
+                    HomeViewModel(FetchMoviesUseCase(moviesRepository))
+                },
                 onMovieClick = { movie ->
                     navController.navigate(NavScreen.Detail.createRoute(movie.id))
                 }
@@ -61,12 +65,16 @@ fun Navigation() {
             arguments = listOf(navArgument(NavArgs.MovieId.key) { type = NavType.IntType })
         ) { backStackEntry ->
             val movieId = requireNotNull(backStackEntry.arguments?.getInt(NavArgs.MovieId.key))
-            DetailScreen(
+            io.devexpert.architectcoders.ui.detail.DetailScreen(
                 viewModel {
-                    DetailViewModel(
+                    io.devexpert.architectcoders.ui.detail.DetailViewModel(
                         movieId,
-                        FindMovieByIdUseCase(moviesRepository),
-                        ToggleFavoriteUseCase(moviesRepository)
+                        FindMovieByIdUseCase(
+                            moviesRepository
+                        ),
+                        ToggleFavoriteUseCase(
+                            moviesRepository
+                        )
                     )
                 },
                 onBack = { navController.popBackStack() })
