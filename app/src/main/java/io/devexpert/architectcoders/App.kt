@@ -2,7 +2,7 @@ package io.devexpert.architectcoders
 
 import android.app.Application
 import androidx.room.Room
-import io.devexpert.architectcoders.framework.database.MoviesDatabase
+import io.devexpert.architectcoders.framework.core.MoviesDatabase
 
 class App : Application() {
 
