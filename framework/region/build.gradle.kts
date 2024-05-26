@@ -1,5 +1,6 @@
 plugins {
     id("architectcoders.android.library")
+    id("architectcoders.di.library")
 }
 
 android {

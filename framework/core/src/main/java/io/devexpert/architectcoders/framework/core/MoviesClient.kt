@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 
-class MoviesClient(private val apiKey: String) {
+internal class MoviesClient(private val apiKey: String) {
 
     private val okHttpClient = okhttp3.OkHttpClient.Builder()
         .addInterceptor(::apiKeyAsQuery)

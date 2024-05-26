@@ -1,5 +1,6 @@
 plugins {
     id("architectcoders.android.feature")
+    id("architectcoders.di.library.compose")
 }
 
 android {

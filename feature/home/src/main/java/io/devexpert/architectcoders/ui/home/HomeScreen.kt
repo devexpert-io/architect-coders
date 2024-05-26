@@ -36,12 +36,13 @@ import io.devexpert.architectcoders.ui.common.AcScaffold
 import io.devexpert.architectcoders.ui.common.PermissionRequestEffect
 import io.devexpert.architectcoders.ui.common.Screen
 import io.devexpert.architectcoders.ui.common.theme.ArchitectCodersTheme
+import org.koin.androidx.compose.koinViewModel
 import io.devexpert.architectcoders.ui.common.R as CommonR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    vm: HomeViewModel,
+    vm: HomeViewModel = koinViewModel(),
     onMovieClick: (Movie) -> Unit
 ) {
     val homeState = rememberHomeState()
