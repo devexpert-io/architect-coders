@@ -5,7 +5,9 @@ import io.devexpert.architectcoders.domain.region.data.DEFAULT_REGION
 import io.devexpert.architectcoders.domain.region.data.LocationDataSource
 import io.devexpert.architectcoders.domain.region.data.RegionDataSource
 import io.devexpert.architectcoders.domain.region.entities.Location
+import org.koin.core.annotation.Factory
 
+@Factory
 internal class GeocoderRegionDataSource(
     private val geocoder: Geocoder,
     private val locationDataSource: LocationDataSource

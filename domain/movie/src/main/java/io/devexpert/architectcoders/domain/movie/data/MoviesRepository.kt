@@ -5,7 +5,9 @@ import io.devexpert.architectcoders.domain.region.data.RegionRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.onEach
+import org.koin.core.annotation.Factory
 
+@Factory
 class MoviesRepository(
     private val regionRepository: RegionRepository,
     private val localDataSource: MoviesLocalDataSource,
