@@ -10,7 +10,9 @@ import io.devexpert.architectcoders.ui.common.ifSuccess
 import io.devexpert.architectcoders.ui.common.stateAsResultIn
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
+@KoinViewModel
 class DetailViewModel(
     id: Int,
     findMovieByIdUseCase: FindMovieByIdUseCase,

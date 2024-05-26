@@ -2,7 +2,9 @@ package io.devexpert.architectcoders.framework.movie.network
 
 import io.devexpert.architectcoders.domain.movie.data.MoviesRemoteDataSource
 import io.devexpert.architectcoders.domain.movie.entities.Movie
+import org.koin.core.annotation.Single
 
+@Single
 internal class MoviesServerDataSource(private val moviesService: MoviesService) : MoviesRemoteDataSource {
 
     override suspend fun fetchPopularMovies(region: String): List<Movie> =

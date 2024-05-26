@@ -1,8 +1,8 @@
 package io.devexpert.architectcoders.ui.home
 
-import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.dsl.module
+import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.Module
 
-val featureHomeModule = module {
-    viewModelOf(::HomeViewModel)
-}
+@Module
+@ComponentScan
+class FeatureHomeModule

@@ -4,7 +4,9 @@ import io.devexpert.architectcoders.domain.movie.data.MoviesLocalDataSource
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.koin.core.annotation.Single
 
+@Single
 internal class MoviesRoomDataSource(private val moviesDao: MoviesDao) :
     MoviesLocalDataSource {
 
