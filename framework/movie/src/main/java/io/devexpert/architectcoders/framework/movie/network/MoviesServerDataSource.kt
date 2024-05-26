@@ -3,7 +3,7 @@ package io.devexpert.architectcoders.framework.movie.network
 import io.devexpert.architectcoders.domain.movie.data.MoviesRemoteDataSource
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 
-class MoviesServerDataSource(private val moviesService: MoviesService) : MoviesRemoteDataSource {
+internal class MoviesServerDataSource(private val moviesService: MoviesService) : MoviesRemoteDataSource {
 
     override suspend fun fetchPopularMovies(region: String): List<Movie> =
         moviesService.fetchPopularMovies(region)

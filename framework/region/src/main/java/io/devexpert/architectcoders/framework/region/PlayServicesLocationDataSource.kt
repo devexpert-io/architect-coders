@@ -7,7 +7,7 @@ import io.devexpert.architectcoders.domain.region.entities.Location
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
-class PlayServicesLocationDataSource(
+internal class PlayServicesLocationDataSource(
     private val fusedLocationClient: FusedLocationProviderClient
 ) : LocationDataSource {
 

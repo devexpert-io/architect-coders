@@ -6,7 +6,7 @@ import io.devexpert.architectcoders.domain.region.data.LocationDataSource
 import io.devexpert.architectcoders.domain.region.data.RegionDataSource
 import io.devexpert.architectcoders.domain.region.entities.Location
 
-class GeocoderRegionDataSource(
+internal class GeocoderRegionDataSource(
     private val geocoder: Geocoder,
     private val locationDataSource: LocationDataSource
 ) : RegionDataSource {
