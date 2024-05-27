@@ -4,10 +4,9 @@ import io.devexpert.architectcoders.domain.movie.data.MoviesLocalDataSource
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.koin.core.annotation.Single
+import javax.inject.Inject
 
-@Single
-internal class MoviesRoomDataSource(private val moviesDao: MoviesDao) :
+internal class MoviesRoomDataSource @Inject constructor(private val moviesDao: MoviesDao) :
     MoviesLocalDataSource {
 
     override val movies: Flow<List<Movie>> =

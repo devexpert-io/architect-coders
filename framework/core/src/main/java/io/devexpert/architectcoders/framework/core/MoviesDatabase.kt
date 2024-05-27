@@ -9,4 +9,3 @@ import io.devexpert.architectcoders.framework.movie.database.MoviesDao
 internal abstract class MoviesDatabase : RoomDatabase() {
     abstract fun moviesDao(): MoviesDao
 }
-
