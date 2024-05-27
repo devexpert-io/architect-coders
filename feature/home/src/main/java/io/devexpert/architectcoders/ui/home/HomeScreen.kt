@@ -30,19 +30,19 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 import io.devexpert.architectcoders.ui.common.AcScaffold
 import io.devexpert.architectcoders.ui.common.PermissionRequestEffect
 import io.devexpert.architectcoders.ui.common.Screen
 import io.devexpert.architectcoders.ui.common.theme.ArchitectCodersTheme
-import org.koin.androidx.compose.koinViewModel
 import io.devexpert.architectcoders.ui.common.R as CommonR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    vm: HomeViewModel = koinViewModel(),
+    vm: HomeViewModel = hiltViewModel(),
     onMovieClick: (Movie) -> Unit
 ) {
     val homeState = rememberHomeState()

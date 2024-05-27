@@ -5,11 +5,10 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import io.devexpert.architectcoders.domain.region.data.LocationDataSource
 import io.devexpert.architectcoders.domain.region.entities.Location
 import kotlinx.coroutines.suspendCancellableCoroutine
-import org.koin.core.annotation.Factory
+import javax.inject.Inject
 import kotlin.coroutines.resume
 
-@Factory
-internal class PlayServicesLocationDataSource(
+internal class PlayServicesLocationDataSource @Inject constructor(
     private val fusedLocationClient: FusedLocationProviderClient
 ) : LocationDataSource {
 

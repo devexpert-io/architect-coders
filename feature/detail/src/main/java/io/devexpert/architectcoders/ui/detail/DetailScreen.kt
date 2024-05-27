@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 import io.devexpert.architectcoders.ui.common.AcScaffold
@@ -43,7 +44,7 @@ import io.devexpert.architectcoders.ui.common.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(vm: DetailViewModel, onBack: () -> Unit) {
+fun DetailScreen(vm: DetailViewModel = hiltViewModel(), onBack: () -> Unit) {
 
     val state by vm.state.collectAsState()
     val detailState = rememberDetailState(state)

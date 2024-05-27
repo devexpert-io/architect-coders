@@ -6,10 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import io.devexpert.architectcoders.ui.common.NavArgs
+import io.devexpert.architectcoders.ui.common.NavScreen
 import io.devexpert.architectcoders.ui.detail.DetailScreen
 import io.devexpert.architectcoders.ui.home.HomeScreen
-import org.koin.androidx.compose.koinViewModel
-import org.koin.core.parameter.parametersOf
 
 @Composable
 fun Navigation() {
@@ -30,7 +30,6 @@ fun Navigation() {
         ) { backStackEntry ->
             val movieId = requireNotNull(backStackEntry.arguments?.getInt(NavArgs.MovieId.key))
             DetailScreen(
-                koinViewModel(parameters = { parametersOf(movieId) }),
                 onBack = { navController.popBackStack() })
         }
     }

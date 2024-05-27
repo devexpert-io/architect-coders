@@ -5,10 +5,9 @@ import io.devexpert.architectcoders.domain.region.data.DEFAULT_REGION
 import io.devexpert.architectcoders.domain.region.data.LocationDataSource
 import io.devexpert.architectcoders.domain.region.data.RegionDataSource
 import io.devexpert.architectcoders.domain.region.entities.Location
-import org.koin.core.annotation.Factory
+import javax.inject.Inject
 
-@Factory
-internal class GeocoderRegionDataSource(
+internal class GeocoderRegionDataSource @Inject constructor(
     private val geocoder: Geocoder,
     private val locationDataSource: LocationDataSource
 ) : RegionDataSource {

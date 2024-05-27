@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.ui.navigation
+package io.devexpert.architectcoders.ui.common
 
 sealed class NavScreen(val route: String) {
     data object Home : NavScreen("home")

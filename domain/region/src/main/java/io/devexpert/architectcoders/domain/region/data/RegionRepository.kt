@@ -1,9 +1,8 @@
 package io.devexpert.architectcoders.domain.region.data
 
-import org.koin.core.annotation.Factory
+import javax.inject.Inject
 
-@Factory
-class RegionRepository(private val regionDataSource: RegionDataSource) {
+class RegionRepository @Inject constructor(private val regionDataSource: RegionDataSource) {
 
     suspend fun findLastRegion(): String = regionDataSource.findLastRegion()
 

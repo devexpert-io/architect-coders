@@ -1,11 +1,31 @@
 package io.devexpert.architectcoders.framework.core
 
+import android.app.Application
 import androidx.room.Room
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import io.devexpert.architectcoders.framework.movie.network.MoviesService
+import javax.inject.Named
+import javax.inject.Singleton
 
-val frameworkCoreModule = module {
-    single { Room.databaseBuilder(get(), MoviesDatabase::class.java, "movies.db").build() }
-    factory { get<MoviesDatabase>().moviesDao() }
-    single { MoviesClient(get(named("apiKey"))).instance }
+@Module
+@InstallIn(SingletonComponent::class)
+internal object FrameworkCoreModule {
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application) = Room.databaseBuilder(
+        app,
+        MoviesDatabase::class.java,
+        "movie-db"
+    ).build()
+
+    @Provides
+    fun provideMoviesDao(db: MoviesDatabase) = db.moviesDao()
+
+    @Provides
+    @Singleton
+    fun provideMoviesService(@Named("apiKey") apiKey: String): MoviesService = MoviesClient(apiKey).instance
 }
