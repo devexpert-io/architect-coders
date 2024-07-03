@@ -48,6 +48,7 @@ internal fun Project.configureKotlinJvm() {
     }
 
     dependencies {
+        add("implementation", libs.findLibrary("kotlinx.coroutines.core").get())
         add("testImplementation", libs.findLibrary("junit").get())
         add("testImplementation", libs.findLibrary("mockito.kotlin").get())
     }

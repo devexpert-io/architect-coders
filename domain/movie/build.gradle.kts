@@ -5,5 +5,4 @@ plugins {
 
 dependencies {
     implementation(project(":domain:region"))
-    implementation(libs.kotlinx.coroutines.core)
 }
