@@ -1,7 +1,7 @@
 package io.devexpert.architectcoders.domain.movie.data
 
-import io.devexpert.architectcoders.domain.movie.usecases.sampleMovie
-import io.devexpert.architectcoders.domain.movie.usecases.sampleMovies
+import io.devexpert.architectcoders.domain.movie.sampleMovie
+import io.devexpert.architectcoders.domain.movie.sampleMovies
 import io.devexpert.architectcoders.domain.region.data.DEFAULT_REGION
 import io.devexpert.architectcoders.domain.region.data.RegionRepository
 import junit.framework.TestCase.assertEquals

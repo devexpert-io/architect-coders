@@ -5,4 +5,5 @@ plugins {
 
 dependencies {
     implementation(project(":domain:region"))
+    testImplementation(project(":test:unit"))
 }

@@ -1,6 +1,7 @@
 package io.devexpert.architectcoders.domain.movie.usecases
 
 import io.devexpert.architectcoders.domain.movie.data.MoviesRepository
+import io.devexpert.architectcoders.domain.movie.sampleMovie
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.mockito.Mockito.mock

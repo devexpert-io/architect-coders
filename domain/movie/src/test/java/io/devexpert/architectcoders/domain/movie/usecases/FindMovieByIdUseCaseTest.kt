@@ -1,5 +1,6 @@
 package io.devexpert.architectcoders.domain.movie.usecases
 
+import io.devexpert.architectcoders.domain.movie.sampleMovie
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Test

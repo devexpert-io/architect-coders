@@ -36,3 +36,5 @@ include(":framework:region")
 include(":feature:common")
 include(":feature:home")
 include(":feature:detail")
+
+include(":test:unit")

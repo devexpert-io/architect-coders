@@ -1,4 +1,4 @@
-package io.devexpert.architectcoders.domain.movie.usecases
+package io.devexpert.architectcoders.domain.movie
 
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 
