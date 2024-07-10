@@ -4,8 +4,8 @@ import io.devexpert.architectcoders.domain.movie.entities.Movie
 
 fun sampleMovie(id: Int) = Movie(
     id = id,
-    title = "Title",
-    overview = "Overview",
+    title = "Title $id",
+    overview = "Overview $id",
     releaseDate = "01/01/2025",
     poster = "",
     backdrop = "",

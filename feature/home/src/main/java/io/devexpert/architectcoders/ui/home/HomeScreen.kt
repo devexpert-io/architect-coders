@@ -35,24 +35,36 @@ import coil.compose.AsyncImage
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 import io.devexpert.architectcoders.ui.common.AcScaffold
 import io.devexpert.architectcoders.ui.common.PermissionRequestEffect
+import io.devexpert.architectcoders.ui.common.Result
 import io.devexpert.architectcoders.ui.common.Screen
 import io.devexpert.architectcoders.ui.common.theme.ArchitectCodersTheme
 import io.devexpert.architectcoders.ui.common.R as CommonR
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     vm: HomeViewModel = hiltViewModel(),
     onMovieClick: (Movie) -> Unit
 ) {
-    val homeState = rememberHomeState()
-
     PermissionRequestEffect(permission = Manifest.permission.ACCESS_COARSE_LOCATION) {
         vm.onUiReady()
     }
 
+    val state by vm.state.collectAsState()
+    HomeScreen(
+        state = state,
+        onMovieClick = onMovieClick
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HomeScreen(
+    state: Result<List<Movie>>,
+    onMovieClick: (Movie) -> Unit
+) {
+    val homeState = rememberHomeState()
+
     Screen {
-        val state by vm.state.collectAsState()
         AcScaffold(
             state = state,
             topBar = {
