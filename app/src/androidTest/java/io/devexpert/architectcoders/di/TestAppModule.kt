@@ -10,6 +10,7 @@ import io.devexpert.architectcoders.framework.core.FrameworkCoreExtrasModule
 import io.devexpert.architectcoders.framework.core.MoviesDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asExecutor
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -32,4 +33,8 @@ object TestAppModule {
         return db
     }
 
+    @Provides
+    @Singleton
+    @Named("apiUrl")
+    fun provideApiUrl(): String = "http://localhost:8080"
 }

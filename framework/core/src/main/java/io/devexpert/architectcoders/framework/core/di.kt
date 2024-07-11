@@ -19,7 +19,10 @@ internal object FrameworkCoreModule {
 
     @Provides
     @Singleton
-    fun provideMoviesService(@Named("apiKey") apiKey: String): MoviesService = MoviesClient(apiKey).instance
+    fun provideMoviesService(
+        @Named("apiKey") apiKey: String,
+        @Named("apiUrl") apiUrl: String
+    ): MoviesService = MoviesClient(apiKey, apiUrl).instance
 }
 
 @Module
@@ -33,5 +36,10 @@ object FrameworkCoreExtrasModule {
         MoviesDatabase::class.java,
         "movie-db"
     ).build()
+
+    @Provides
+    @Singleton
+    @Named("apiUrl")
+    fun provideApiUrl(): String = "https://api.themoviedb.org/3/"
 
 }
