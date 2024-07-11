@@ -63,4 +63,5 @@ dependencies {
     kspAndroidTest(libs.hilt.compiler)
     androidTestImplementation(libs.androidx.room.ktx)
     kspAndroidTest(libs.androidx.room.compiler)
+    androidTestImplementation(libs.okhttp.mockwebserver)
 }
