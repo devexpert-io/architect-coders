@@ -40,13 +40,27 @@ import coil.compose.AsyncImage
 import io.devexpert.architectcoders.domain.movie.entities.Movie
 import io.devexpert.architectcoders.ui.common.AcScaffold
 import io.devexpert.architectcoders.ui.common.R
+import io.devexpert.architectcoders.ui.common.Result
 import io.devexpert.architectcoders.ui.common.Screen
+
+@Composable
+fun DetailScreen(vm: DetailViewModel = hiltViewModel(), onBack: () -> Unit) {
+    val state by vm.state.collectAsState()
+
+    DetailScreen(
+        state = state,
+        onBack = onBack,
+        onFavoriteClicked = vm::onFavoriteClicked
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(vm: DetailViewModel = hiltViewModel(), onBack: () -> Unit) {
-
-    val state by vm.state.collectAsState()
+fun DetailScreen(
+    state: Result<Movie>,
+    onBack: () -> Unit,
+    onFavoriteClicked: () -> Unit
+) {
     val detailState = rememberDetailState(state)
 
     Screen {
@@ -60,7 +74,7 @@ fun DetailScreen(vm: DetailViewModel = hiltViewModel(), onBack: () -> Unit) {
                 )
             },
             floatingActionButton = {
-                FloatingActionButton(onClick = { vm.onFavoriteClicked() }) {
+                FloatingActionButton(onClick = onFavoriteClicked) {
                     val favorite = detailState.movie?.isFavorite ?: false
                     Icon(
                         imageVector = if (favorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
