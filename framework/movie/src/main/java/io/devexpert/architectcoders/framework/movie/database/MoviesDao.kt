@@ -15,6 +15,9 @@ interface MoviesDao {
     @Query("SELECT * FROM DbMovie WHERE id = :id")
     fun findMovieById(id: Int): Flow<DbMovie?>
 
+    @Query("SELECT COUNT(*) FROM DbMovie")
+    suspend fun count(): Int
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(movies: List<DbMovie>)
 

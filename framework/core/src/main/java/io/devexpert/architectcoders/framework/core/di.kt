@@ -15,6 +15,18 @@ import javax.inject.Singleton
 internal object FrameworkCoreModule {
 
     @Provides
+    fun provideMoviesDao(db: MoviesDatabase) = db.moviesDao()
+
+    @Provides
+    @Singleton
+    fun provideMoviesService(@Named("apiKey") apiKey: String): MoviesService = MoviesClient(apiKey).instance
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object FrameworkCoreExtrasModule {
+
+    @Provides
     @Singleton
     fun provideDatabase(app: Application) = Room.databaseBuilder(
         app,
@@ -22,10 +34,4 @@ internal object FrameworkCoreModule {
         "movie-db"
     ).build()
 
-    @Provides
-    fun provideMoviesDao(db: MoviesDatabase) = db.moviesDao()
-
-    @Provides
-    @Singleton
-    fun provideMoviesService(@Named("apiKey") apiKey: String): MoviesService = MoviesClient(apiKey).instance
 }

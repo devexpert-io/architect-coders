@@ -3,10 +3,11 @@ package io.devexpert.architectcoders
 import androidx.test.rule.GrantPermissionRule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import io.devexpert.architectcoders.domain.movie.data.MoviesRepository
+import io.devexpert.architectcoders.framework.movie.database.DbMovie
+import io.devexpert.architectcoders.framework.movie.database.MoviesDao
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertTrue
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,7 +24,7 @@ class ExampleInstrumentedTest {
     )
 
     @Inject
-    lateinit var moviesRepository: MoviesRepository
+    lateinit var moviesDao: MoviesDao
 
     @Before
     fun setUp() {
@@ -31,10 +32,31 @@ class ExampleInstrumentedTest {
     }
 
     @Test
-    fun test_it_works() {
-        runBlocking {
-            val movies = moviesRepository.movies.first()
-            assertTrue(movies.isEmpty())
-        }
+    fun check_4_items_db() = runTest {
+        moviesDao.save(buildDatabaseMovies(1, 2, 3, 4))
+        val movies = moviesDao.fetchPopularMovies().first()
+        assertEquals(4, movies.size)
     }
+
+    @Test
+    fun check_6_items_db() = runTest {
+        moviesDao.save(buildDatabaseMovies(1, 2, 3, 4, 5, 6))
+        assertEquals(6, moviesDao.fetchPopularMovies().first().size)
+    }
+}
+
+fun buildDatabaseMovies(vararg id: Int) = id.map {
+    DbMovie(
+        id = it,
+        title = "Title $it",
+        overview = "Overview $it",
+        releaseDate = "01/01/2025",
+        poster = "",
+        backdrop = "",
+        originalLanguage = "EN",
+        originalTitle = "Original Title $it",
+        popularity = 5.0,
+        voteAverage = 5.1,
+        isFavorite = false
+    )
 }
