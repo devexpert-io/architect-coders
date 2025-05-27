@@ -6,6 +6,7 @@ plugins {
     id("architectcoders.android.application")
     id("architectcoders.android.application.compose")
     id("architectcoders.di.library.compose")
+    id("io.kotzilla.kotzilla-plugin")
 }
 
 android {
@@ -59,6 +60,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.play.services.location)
+    implementation("io.kotzilla:kotzilla-sdk:1.0.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

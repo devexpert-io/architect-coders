@@ -1,23 +1,23 @@
 [versions]
-agp = "8.4.2"
-kotlin = "2.0.0"
-coreKtx = "1.13.1"
+agp = "8.9.1"
+kotlin = "2.1.10"
+coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.3"
-activityCompose = "1.9.0"
-composeBom = "2024.06.00"
+lifecycleRuntimeKtx = "2.8.7"
+activityCompose = "1.10.1"
+composeBom = "2025.03.01"
 coil = "2.6.0"
-navigationCompose = "2.7.7"
+navigationCompose = "2.8.9"
 playServicesLocation = "21.3.0"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
 kotlinxSerialization = "1.6.3"
 roomKtx = "2.6.1"
-ksp = "2.0.0-1.0.21"
-coroutines = "1.8.0"
-koin-bom = "3.5.6"
+ksp = "2.1.10-1.0.31"
+coroutines = "1.9.0"
+koin-bom = "4.0.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -62,4 +62,3 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-

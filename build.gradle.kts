@@ -8,3 +8,10 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.kotlinxSerialization) apply false
 }
+
+buildscript {
+    dependencies {
+        // This part to copy paste
+        classpath("io.kotzilla:kotzilla-plugin:1.0.1")
+    }
+}

@@ -8,6 +8,7 @@ import io.devexpert.architectcoders.framework.movie.frameworkMovieModule
 import io.devexpert.architectcoders.framework.region.frameworkRegionModule
 import io.devexpert.architectcoders.ui.detail.featureDetailModule
 import io.devexpert.architectcoders.ui.home.featureHomeModule
+import io.kotzilla.sdk.analytics.koin.analytics
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -32,6 +33,8 @@ class App : Application() {
                 frameworkMovieModule,
                 frameworkRegionModule
             )
+            // Kotzilla SDK setup for Android apps
+            analytics()
         }
     }
 }
